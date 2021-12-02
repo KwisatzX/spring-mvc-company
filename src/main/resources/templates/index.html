@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Spring MVC Company</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/styles/style.css}"
+          href="/static/styles/style.css"/>
+</head>
+
+<body>
+<div data-collapse="medium" data-animation="default" data-duration="400" data-easing="ease" data-easing2="ease"
+     role="banner" class="navigation w-nav">
+    <div class="navigation-items">
+        <a href="/" aria-current="page" class="logo-link w-nav-brand w--current">
+            <img th:src="@{/images/logo.png}" width="455" alt="" class="logo-image"/>
+        </a>
+        <div class="navigation-wrap">
+            <nav role="navigation" class="navigation-items w-nav-menu">
+                <a href="/" aria-current="page" class="navigation-item w-nav-link w--current">Home</a>
+                <a href="/" aria-current="page" class="navigation-item">Employees</a>
+                <a href="/" aria-current="page" class="navigation-item">Clients</a>
+                <a href="/" aria-current="page" class="navigation-item">Suppliers</a>
+                <a href="/" aria-current="page" class="navigation-item">Other</a>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="section">
+    <div class="container">
+        <div class="intro-wrap">
+            <h1 class="heading-jumbo">Welcome to Dunder Mifflin Paper Company.</h1>
+        </div>
+    </div>
+</div>
+<div class="footer-wrap">
+    <div>
+    </div>
+    <div class="footer-links">
+        <a href="https://github.com/KwisatzX/spring-art-gallery/" target="_blank" class="footer-item">GITHUB</a>
+        <a href="https://www.linkedin.com/in/tomasz-w%C4%99grzyk-09b57621a/" target="_blank" class="footer-item">LinkedIn</a>
+    </div>
+</div>
+</body>
+</html>
