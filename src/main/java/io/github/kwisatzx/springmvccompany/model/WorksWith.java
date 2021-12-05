@@ -2,10 +2,11 @@ package io.github.kwisatzx.springmvccompany.model;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "works_with")
-public class WorksWith {
+public class WorksWith implements Serializable {
     @Id
     @OneToOne
     @JoinColumn(name = "employee_id")

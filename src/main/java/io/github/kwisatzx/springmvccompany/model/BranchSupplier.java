@@ -1,10 +1,11 @@
 package io.github.kwisatzx.springmvccompany.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "branch_supplier")
-public class BranchSupplier {
+public class BranchSupplier implements Serializable {
     @Id
     @OneToOne
     @JoinColumn(name = "branch_id")
