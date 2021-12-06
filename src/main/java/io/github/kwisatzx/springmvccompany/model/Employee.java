@@ -17,7 +17,7 @@ public class Employee implements Serializable {
     private String lastName;
     @Column(name = "birth_day")
     private LocalDate birthDay;
-    private String sex;
+    private Character sex;
     private Double salary;
     @OneToOne
     @JoinColumn(name = "super_id")
@@ -50,11 +50,11 @@ public class Employee implements Serializable {
         this.birthDay = birth_day;
     }
 
-    public String getSex() {
+    public Character getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(Character sex) {
         this.sex = sex;
     }
 

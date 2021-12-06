@@ -15,7 +15,8 @@ public class WorksWith implements Serializable {
     @OneToOne
     @JoinColumn(name = "client_id")
     private Client client;
-    private Double total_sales;
+    @JoinColumn(name = "total_sales")
+    private Double totalSales;
 
     public Employee getEmployee() {
         return employee;
@@ -33,11 +34,11 @@ public class WorksWith implements Serializable {
         this.client = client;
     }
 
-    public Double getTotal_sales() {
-        return total_sales;
+    public Double getTotalSales() {
+        return totalSales;
     }
 
-    public void setTotal_sales(Double total_sales) {
-        this.total_sales = total_sales;
+    public void setTotalSales(Double total_sales) {
+        this.totalSales = total_sales;
     }
 }

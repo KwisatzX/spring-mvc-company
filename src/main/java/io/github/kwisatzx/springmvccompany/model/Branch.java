@@ -16,7 +16,8 @@ public class Branch implements Serializable {
     @OneToOne
     @JoinColumn(name = "manager_id")
     private Employee manager;
-    private LocalDate mgr_start_date;
+    @JoinColumn(name = "mgr_start_date")
+    private LocalDate mgrStartDate;
 
 
     public Employee getManager() {
@@ -27,12 +28,12 @@ public class Branch implements Serializable {
         this.manager = manager_id;
     }
 
-    public LocalDate getMgr_start_date() {
-        return mgr_start_date;
+    public LocalDate getMgrStartDate() {
+        return mgrStartDate;
     }
 
-    public void setMgr_start_date(LocalDate mgr_start_date) {
-        this.mgr_start_date = mgr_start_date;
+    public void setMgrStartDate(LocalDate mgr_start_date) {
+        this.mgrStartDate = mgr_start_date;
     }
 
     public String getBranchName() {
