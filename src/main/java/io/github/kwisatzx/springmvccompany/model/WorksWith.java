@@ -41,4 +41,22 @@ public class WorksWith implements Serializable {
     public void setTotalSales(Double total_sales) {
         this.totalSales = total_sales;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        WorksWith worksWith = (WorksWith) o;
+
+        if (!employee.equals(worksWith.employee)) return false;
+        return client.equals(worksWith.client);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = employee.hashCode();
+        result = 31 * result + client.hashCode();
+        return result;
+    }
 }
