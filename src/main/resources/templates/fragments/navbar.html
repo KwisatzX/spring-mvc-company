@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+<div th:fragment="body" data-collapse="medium" data-animation="default" data-duration="400" data-easing="ease"
+     data-easing2="ease"
+     role="banner" class="navigation w-nav"
+     style="border-bottom: thin solid darkgrey; border-top: thin solid darkgrey; background:#eeeeee">
+    <div class="navigation-items">
+        <a href="/" aria-current="page" class="logo-link w-nav-brand w--current">
+            <img th:src="@{/images/logo.png}" width="331" height="80" alt="" class="logo-image"/>
+        </a>
+        <div class="navigation-wrap">
+            <nav role="navigation" class="navigation-items w-nav-menu">
+                <a href="/" aria-current="page" class="navigation-item w-nav-link w--current">Home</a>
+                <a href="/" aria-current="page" class="navigation-item">Employees</a>
+                <a href="/" aria-current="page" class="navigation-item">Clients</a>
+                <a href="/" aria-current="page" class="navigation-item">Suppliers</a>
+                <a href="/" aria-current="page" class="navigation-item">Other</a>
+            </nav>
+        </div>
+    </div>
+</div>
+</body>
+</html>
