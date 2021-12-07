@@ -19,6 +19,13 @@ public class Branch implements Serializable {
     @JoinColumn(name = "mgr_start_date")
     private LocalDate mgrStartDate;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Employee getManager() {
         return manager;

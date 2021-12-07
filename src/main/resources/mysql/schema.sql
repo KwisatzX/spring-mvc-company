@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS employees
     salary      DOUBLE UNSIGNED,
     super_id    BIGINT UNSIGNED,
     branch_id   BIGINT UNSIGNED NOT NULL,
+    INDEX (last_name),
     FOREIGN KEY (super_id) REFERENCES employees (employee_id),
     FOREIGN KEY (branch_id) REFERENCES branches (branch_id)
 );
