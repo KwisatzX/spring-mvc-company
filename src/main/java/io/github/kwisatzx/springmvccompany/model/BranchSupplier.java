@@ -33,4 +33,9 @@ public class BranchSupplier implements Serializable {
         result = 31 * result + supplier.hashCode();
         return result;
     }
+
+    @Override
+    public String toString() {
+        return supplier;
+    }
 }
