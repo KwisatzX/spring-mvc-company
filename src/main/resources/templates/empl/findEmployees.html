@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring MVC Company - Employees</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/styles/style.css}"/>
+</head>
+<body>
+<div th:replace="fragments/navbar :: body"></div>
+
+<div class="section">
+    <h2>Find Employees</h2>
+    <form th:object="${employee}" th:action="@{/employees}" method="get" class="contact-form-grid"
+          id="search-employees-form">
+        <label class="label">Last name:
+            <input class="contact-form-wrap" th:field="*{lastName}" size="30" maxlength="40"/>
+        </label>
+    </form>
+    <div class="contact-form-grid">
+        <button type="submit" class="button">Find employee</button>
+    </div>
+</div>
+<br/>
+<a class="button" th:href="@{/employees/new}">Add employee</a>
+
+<div th:replace="fragments/footer :: body"></div>
+</body>
+</html>

@@ -7,9 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.time.LocalDate;
+import java.util.Collection;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @DataJpaTest
 public class EmployeeRepositoryTest {
@@ -32,10 +33,11 @@ public class EmployeeRepositoryTest {
         employee.setBranch(branch);
         employee.setSalary(100.000);
         employeeRepository.save(employee);
-        Employee result = employeeRepository.findByLastName("Smith");
-        assertNotNull(result);
-        assertEquals("John", result.getFirstName());
-        assertEquals(100.000, result.getSalary());
-        assertEquals('M', result.getSex());
+        Collection<Employee> result = employeeRepository.findByLastName("Smith");
+        assertFalse(result.isEmpty());
+        Employee resultEmployee = result.iterator().next();
+        assertEquals("John", resultEmployee.getFirstName());
+        assertEquals(100.000, resultEmployee.getSalary());
+        assertEquals('M', resultEmployee.getSex());
     }
 }

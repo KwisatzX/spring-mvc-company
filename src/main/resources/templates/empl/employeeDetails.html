@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring MVC Company - Employees</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/styles/style.css}"/>
+</head>
+<body>
+<div th:replace="fragments/navbar :: body"></div>
+
+<div class="section">
+    <h2>Employee information:</h2>
+    <table id="employee" class="table-header" th:object="${emp}">
+        <tr>
+            <th>Full name</th>
+            <td><b th:text="${emp.firstName + ' ' + emp.lastName}"></b></td>
+        </tr>
+        <tr>
+            <th>Birth date</th>
+            <td th:text="*{birthDay}"></td>
+        </tr>
+        <tr>
+            <th>Sex</th>
+            <td th:text="*{sex}"></td>
+        </tr>
+        <tr>
+            <th>Salary</th>
+            <td th:text="*{salary}"></td>
+        </tr>
+        <tr>
+            <th>Superior</th>
+            <td th:text="*{superior}"></td>
+        </tr>
+        <tr>
+            <th>Branch</th>
+            <td th:text="*{branch}"></td>
+        </tr>
+    </table>
+</div>
+
+<div th:replace="fragments/footer :: body"></div>
+</body>
+</html>
