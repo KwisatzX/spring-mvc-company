@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Collection;
 
 @Controller
@@ -76,7 +77,7 @@ public class EmployeesController {
     }
 
     @PostMapping("/employees/new")
-    public String newEmployeePost(@ModelAttribute("emp") Employee emp, BindingResult bindingResult) {
+    public String newEmployeePost(@Valid @ModelAttribute("emp") Employee emp, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) return "empl/employeeNewOrEdit";
         else {
             employeeRepository.save(emp);
