@@ -119,17 +119,4 @@ public class Employee implements Serializable {
     public String toString() {
         return getFirstName() + " " + getLastName();
     }
-
-    public String fullString() {
-        return "Employee{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", birthDay=" + birthDay +
-                ", sex=" + sex +
-                ", salary=" + salary +
-                ", superior=" + superior +
-                ", branch=" + branch +
-                '}';
-    }
 }
