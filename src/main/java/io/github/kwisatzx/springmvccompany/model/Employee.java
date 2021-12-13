@@ -1,6 +1,9 @@
 package io.github.kwisatzx.springmvccompany.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -12,10 +15,13 @@ public class Employee implements Serializable {
     @Column(name = "employee_id")
     private Long id;
     @Column(name = "first_name")
+    @NotEmpty
     private String firstName;
     @Column(name = "last_name")
+    @NotEmpty
     private String lastName;
     @Column(name = "birth_day")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDay;
     private Character sex;
     private Double salary;
@@ -111,6 +117,19 @@ public class Employee implements Serializable {
 
     @Override
     public String toString() {
-        return firstName + " " + lastName;
+        return getFirstName() + " " + getLastName();
+    }
+
+    public String fullString() {
+        return "Employee{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthDay=" + birthDay +
+                ", sex=" + sex +
+                ", salary=" + salary +
+                ", superior=" + superior +
+                ", branch=" + branch +
+                '}';
     }
 }

@@ -8,17 +8,17 @@
 <body>
 <div th:replace="fragments/navbar :: body"></div>
 
-<div class="section">
-    <h2>Employees:</h2>
+<div class="section" style="text-align: center">
+    <h2 style="text-align: left">Employees:</h2>
     <table id="employees" class="table-header">
         <thead>
         <tr>
-            <th>Full name</th>
+            <th style="width: 170px;">Full name</th>
             <th style="width: 150px;">Birth date</th>
-            <th style="width: 30px;">Sex</th>
-            <th>Salary</th>
-            <th>Superior</th>
-            <th>Branch</th>
+            <th style="width: 50px;">Sex</th>
+            <th style="width: 130px;">Salary</th>
+            <th style="width: 130px;">Superior</th>
+            <th style="width: 100px;">Branch</th>
         </tr>
         </thead>
         <tbody>
@@ -34,6 +34,7 @@
         </tr>
         </tbody>
     </table>
+    <br/>
 </div>
 
 <div th:replace="fragments/footer :: body"></div>

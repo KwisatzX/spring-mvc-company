@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring MVC Company - Employees</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/styles/style.css}"/>
+</head>
+<body>
+<div th:replace="fragments/navbar :: body"></div>
+
+<div class="section" style="text-align: center">
+    <h2 style="text-align: left">Employee information:</h2>
+    <form th:object="${emp}" th:action="@{/employees/new}" method="post" class="contact-form-grid">
+        <div class="contact-form-grid">
+            <input th:replace="fragments/inputField :: input ('First name: ', 'firstName', 'text')">
+            <input th:replace="fragments/inputField :: input ('Last name: ', 'lastName', 'text')">
+            <input th:replace="fragments/inputField :: input ('Date of birth: ', 'birthDay', 'date')">
+            <input th:replace="fragments/inputField :: input ('Sex: ', 'sex', 'sex')">
+            <input th:replace="fragments/inputField :: input ('Salary: ', 'salary', 'number')">
+            <input th:replace="fragments/selectField :: select ('Superior name: ', 'superior', ${superiors})">
+            <input th:replace="fragments/selectField :: select ('Branch name: ', 'branch', ${branches})">
+        </div>
+        <button th:with="text=${emp['new']} ? 'Add Employee' : 'Update Employee'"
+                class="button" type="submit" th:text="${text}">Add
+        </button>
+    </form>
+    <br/>
+</div>
+
+<div th:replace="fragments/footer :: body"></div>
+</body>
+</html>

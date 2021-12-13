@@ -68,6 +68,6 @@ public class Branch implements Serializable {
 
     @Override
     public String toString() {
-        return branchName;
+        return getBranchName();
     }
 }

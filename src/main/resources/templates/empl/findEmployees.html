@@ -14,14 +14,21 @@
           id="search-employees-form">
         <label class="label">Last name:
             <input class="contact-form-wrap" th:field="*{lastName}" size="30" maxlength="40"/>
+            <span class="help-footnote" th:if="${#fields.hasAnyErrors()}">
+              <b th:each="err : ${#fields.allErrors()}" th:text="${err}">Error</b></span>
         </label>
+        <div class="contact-form-grid">
+            <button type="submit" class="button">Find employee</button>
+        </div>
     </form>
+    <br/>
     <div class="contact-form-grid">
-        <button type="submit" class="button">Find employee</button>
+        <form th:action="@{/employees/new}" method="get">
+            <button type="submit" class="button">Add employee</button>
+        </form>
     </div>
 </div>
 <br/>
-<a class="button" th:href="@{/employees/new}">Add employee</a>
 
 <div th:replace="fragments/footer :: body"></div>
 </body>
