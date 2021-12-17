@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring MVC Company - Branch details</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/styles/style.css}"/>
+</head>
+<body>
+<div th:replace="fragments/navbar :: body"></div>
+
+<div class="section">
+    <h2>Branch information:</h2>
+    <table id="branch" class="table-sub-heading-color" th:object="${branch}">
+        <tr>
+            <th>Branch name:</th>
+            <td><b th:text="${branch.name}"></b></td>
+        </tr>
+        <tr>
+            <th>Branch manager:</th>
+            <td th:text="${branch.manager}"></td>
+        </tr>
+        <tr>
+            <th>Manager start date:</th>
+            <td th:text="${branch.mgrStartDate}"></td>
+        </tr>
+        <tr>
+            <th>Clients:</th>
+            <td th:text="${branch.getClientsDisplayString()}"></td>
+        </tr>
+        <tr>
+            <th>Employees:</th>
+            <td th:text="${branch.getEmployeesDisplayString()}"></td>
+        </tr>
+    </table>
+</div>
+<br/>
+<div class="contact-form-grid">
+    <form th:action="@{/branches/{id}/edit(id=${branch.id})}" method="get">
+        <button type="submit" class="button">Edit Branch</button>
+    </form>
+</div>
+<br/>
+
+<div th:replace="fragments/footer :: body"></div>
+</body>
+</html>

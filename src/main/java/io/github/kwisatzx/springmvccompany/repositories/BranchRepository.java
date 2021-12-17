@@ -9,7 +9,9 @@ import java.util.List;
 
 public interface BranchRepository extends CrudRepository<Branch, Long> {
 
-    @Query("SELECT DISTINCT branch FROM Branch branch")
+    @Query("SELECT DISTINCT branch FROM Branch branch LEFT JOIN FETCH branch.clients LEFT JOIN FETCH branch.employees")
     @Transactional(readOnly = true)
     List<Branch> getAllBranches();
+
+    boolean existsByName(String name);
 }

@@ -5,11 +5,13 @@
     <th:block th:fragment="select (label, name, items)">
         <div th:with="valid=${!#fields.hasErrors(name)}" class="contact-form-grid">
             <label class="label" th:text="${label}">Label</label>
-            <select th:field="*{__${name}__}">
-                <option th:each="item : ${items}" th:value="${item}"
-                        th:text="${item}">item
-                </option>
-            </select>
+            <div>
+                <select th:field="*{__${name}__}" style="width: 177px">
+                    <option th:each="item : ${items}" th:value="${item}"
+                            th:text="${item}">item
+                    </option>
+                </select>
+            </div>
             <th:block th:if="${!valid}">
                 <span class="help-footnote" th:errors="*{__${name}__}">Error</span>
             </th:block>

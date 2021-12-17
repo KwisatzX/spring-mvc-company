@@ -1,5 +1,8 @@
 package io.github.kwisatzx.springmvccompany.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -7,6 +10,9 @@ import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 @Entity
 @Table(name = "employees")
 public class Employee implements Serializable {
@@ -28,7 +34,7 @@ public class Employee implements Serializable {
     @OneToOne
     @JoinColumn(name = "super_id")
     private Employee superior;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "branch_id")
     private Branch branch;
 
@@ -96,6 +102,17 @@ public class Employee implements Serializable {
         this.id = id;
     }
 
+    public void setEmployee(Employee employee) {
+        setFirstName(employee.getFirstName());
+        setLastName(employee.getLastName());
+        setBirthDay(employee.getBirthDay());
+        setSex(employee.getSex());
+        setSalary(employee.getSalary());
+        setSuperior(employee.getSuperior());
+        setBranch(employee.getBranch());
+    }
+
+    @JsonIgnore
     public boolean isNew() {
         return this.id == null;
     }

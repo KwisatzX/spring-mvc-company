@@ -9,13 +9,13 @@
 <div th:replace="fragments/navbar :: body"></div>
 
 <div class="section" style="text-align: center">
-    <h2 style="text-align: left">Employee information:</h2>
-    <form th:object="${emp}" th:action="@{/employees/new}" method="post" class="contact-form-grid">
+    <h2>Employee information:</h2>
+    <form th:object="${emp}" method="post" class="contact-form-grid">
         <div class="contact-form-grid">
             <input th:replace="fragments/inputField :: input ('First name: ', 'firstName', 'text')">
             <input th:replace="fragments/inputField :: input ('Last name: ', 'lastName', 'text')">
             <input th:replace="fragments/inputField :: input ('Date of birth: ', 'birthDay', 'date')">
-            <input th:replace="fragments/inputField :: input ('Sex: ', 'sex', 'sex')">
+            <input th:replace="fragments/selectField :: select ('Sex: ', 'sex', ${sex})">
             <input th:replace="fragments/inputField :: input ('Salary: ', 'salary', 'number')">
             <input th:replace="fragments/selectField :: select ('Superior name: ', 'superior', ${superiors})">
             <input th:replace="fragments/selectField :: select ('Branch name: ', 'branch', ${branches})">

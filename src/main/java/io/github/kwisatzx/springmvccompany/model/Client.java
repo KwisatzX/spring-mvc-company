@@ -12,7 +12,7 @@ public class Client implements Serializable {
     private Long id;
     @Column(name = "client_name")
     private String name;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "branch_id")
     private Branch branch;
 

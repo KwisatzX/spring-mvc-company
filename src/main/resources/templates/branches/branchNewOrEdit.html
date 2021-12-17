@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring MVC Company - Branch</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/styles/style.css}"/>
+</head>
+<body>
+<div th:replace="fragments/navbar :: body"></div>
+
+<div class="section" style="text-align: center">
+    <h2>Branch information:</h2>
+    <form th:object="${branch}" method="post" class="contact-form-grid">
+        <div class="contact-form-grid">
+            <input th:replace="fragments/inputField :: input ('Branch name: ', 'name', 'text')">
+            <input th:replace="fragments/selectField :: select ('Branch manager: ', 'manager', ${employees})">
+            <input th:replace="fragments/inputField :: input ('Manager start date: ', 'mgrStartDate', 'date')">
+            <!--- Add checkboxes for employees and clients maybe --->
+        </div>
+        <button th:with="text=${branch['new']} ? 'Add Branch' : 'Update Branch'"
+                class="button" type="submit" th:text="${text}">Add
+        </button>
+    </form>
+    <br/>
+</div>
+
+<div th:replace="fragments/footer :: body"></div>
+</body>
+</html>

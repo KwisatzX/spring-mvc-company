@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring MVC Company - Branches</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/styles/style.css}"/>
+</head>
+<body>
+<div th:replace="fragments/navbar :: body"></div>
+
+<div class="section" style="text-align: center">
+    <h2 style="text-align: left">Branches:</h2>
+    <table id="employees" class="table-header">
+        <thead>
+        <tr>
+            <th style="width: 150px;">Branch name</th>
+            <th style="width: 150px;">Manager name</th>
+            <th style="width: 150px;">Manager start date</th>
+            <th style="width: 300px;">Clients</th>
+            <th style="width: 300px;">Employees</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="branch : ${branchList}">
+            <td>
+                <a th:href="@{/branches/__${branch.id}__}" th:text="${branch.name}"></a>
+            </td>
+            <td th:text="${branch.manager}"></td>
+            <td th:text="${branch.mgrStartDate}"></td>
+            <td th:text="${branch.getClientsDisplayString()}"></td>
+            <td th:text="${branch.getEmployeesDisplayString()}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <br/>
+    <div style="text-align: left">
+        <form th:action="@{/branches/new}" method="get">
+            <button type="submit" class="button">Add new Branch</button>
+        </form>
+    </div>
+    <br/>
+</div>
+
+<div th:replace="fragments/footer :: body"></div>
+</body>
+</html>
