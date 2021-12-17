@@ -20,12 +20,15 @@ CREATE TABLE employees
     branch_id   BIGINT NOT NULL
 );
 ALTER TABLE employees
-    ADD CONSTRAINT fk_employees_employees FOREIGN KEY (super_id) REFERENCES employees (employee_id);
+    ADD CONSTRAINT fk_employees_employees FOREIGN KEY (super_id) REFERENCES employees (employee_id)
+        ON DELETE SET NULL;
 ALTER TABLE employees
-    ADD CONSTRAINT fk_employees_branches FOREIGN KEY (branch_id) REFERENCES branches (branch_id);
+    ADD CONSTRAINT fk_employees_branches FOREIGN KEY (branch_id) REFERENCES branches (branch_id)
+        ON DELETE SET NULL;
 
 ALTER TABLE branches
-    ADD CONSTRAINT fk_branches_employees FOREIGN KEY (manager_id) REFERENCES employees (employee_id);
+    ADD CONSTRAINT fk_branches_employees FOREIGN KEY (manager_id) REFERENCES employees (employee_id)
+        ON DELETE SET NULL;
 
 CREATE TABLE clients
 (
@@ -34,7 +37,8 @@ CREATE TABLE clients
     branch_id   BIGINT NOT NULL
 );
 ALTER TABLE clients
-    ADD CONSTRAINT fk_clients_branches FOREIGN KEY (branch_id) REFERENCES branches (branch_id);
+    ADD CONSTRAINT fk_clients_branches FOREIGN KEY (branch_id) REFERENCES branches (branch_id)
+        ON DELETE SET NULL;
 
 CREATE TABLE branch_suppliers
 (
@@ -44,7 +48,8 @@ CREATE TABLE branch_suppliers
     PRIMARY KEY (branch_id, supplier_name)
 );
 ALTER TABLE branch_suppliers
-    ADD CONSTRAINT fk_branch_supplier_branches FOREIGN KEY (branch_id) REFERENCES branches (branch_id);
+    ADD CONSTRAINT fk_branch_supplier_branches FOREIGN KEY (branch_id) REFERENCES branches (branch_id)
+        ON DELETE SET NULL;
 
 CREATE TABLE works_with
 (
@@ -54,6 +59,9 @@ CREATE TABLE works_with
     PRIMARY KEY (employee_id, client_id)
 );
 ALTER TABLE works_with
-    ADD CONSTRAINT fk_works_with_employees FOREIGN KEY (employee_id) REFERENCES employees (employee_id);
+    ADD CONSTRAINT fk_works_with_employees FOREIGN KEY (employee_id) REFERENCES employees (employee_id)
+        ON DELETE SET NULL;
 ALTER TABLE works_with
-    ADD CONSTRAINT fk_works_with_clients FOREIGN KEY (client_id) REFERENCES clients (client_id);
+    ADD CONSTRAINT fk_works_with_clients FOREIGN KEY (client_id) REFERENCES clients (client_id)
+        ON DELETE SET NULL;
+
