@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring MVC Company - Branches</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/styles/style.css}"/>
+</head>
+<body>
+<div th:replace="fragments/navbar :: body"></div>
+
+<div class="section" style="text-align: center">
+    <h2 style="text-align: left">Branch suppliers:</h2>
+    <table class="table-header">
+        <thead>
+        <tr>
+            <th style="width: 150px;">Branch name</th>
+            <th style="width: 150px;">Supplier name</th>
+            <th style="width: 150px;">Supply type</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="supplier : ${suppliers}">
+            <td>
+                <a th:href="@{/branches/__${supplier.branch.id}__}" th:text="${supplier.branch.name}"></a>
+            </td>
+            <td th:text="${supplier.supplier}"></td>
+            <td th:text="${supplier.type}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <br/>
+</div>
+
+<div th:replace="fragments/footer :: body"></div>
+</body>
+</html>
