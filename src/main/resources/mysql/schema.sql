@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS branches
 (
     branch_id      BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     branch_name    VARCHAR(30),
-    manager_id     BIGINT,
+    manager_id     BIGINT UNSIGNED,
     mgr_start_date DATE
 );
 
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS employees
     sex         CHARACTER,
     salary      DOUBLE UNSIGNED,
     super_id    BIGINT UNSIGNED,
-    branch_id   BIGINT UNSIGNED NOT NULL,
+    branch_id   BIGINT UNSIGNED,
     INDEX (last_name),
     FOREIGN KEY (super_id) REFERENCES employees (employee_id) ON DELETE SET NULL,
     FOREIGN KEY (branch_id) REFERENCES branches (branch_id) ON DELETE SET NULL
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS clients
 (
     client_id   BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     client_name VARCHAR(50),
-    branch_id   BIGINT UNSIGNED NOT NULL,
+    branch_id   BIGINT UNSIGNED,
     FOREIGN KEY (branch_id) REFERENCES branches (branch_id) ON DELETE SET NULL
 );
 
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS branch_suppliers
     supplier_name VARCHAR(50)     NOT NULL,
     supply_type   VARCHAR(50),
     PRIMARY KEY (branch_id, supplier_name),
-    FOREIGN KEY (branch_id) REFERENCES branches (branch_id) ON DELETE SET NULL
+    FOREIGN KEY (branch_id) REFERENCES branches (branch_id) ON DELETE CASCADE
 );
 
 
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS works_with
     client_id   BIGINT UNSIGNED NOT NULL,
     total_sales DOUBLE UNSIGNED,
     PRIMARY KEY (employee_id, client_id),
-    FOREIGN KEY (employee_id) REFERENCES employees (employee_id) ON DELETE SET NULL,
-    FOREIGN KEY (client_id) REFERENCES clients (client_id) ON DELETE SET NULL
+    FOREIGN KEY (employee_id) REFERENCES employees (employee_id) ON DELETE CASCADE,
+    FOREIGN KEY (client_id) REFERENCES clients (client_id) ON DELETE CASCADE
 );
 

@@ -49,7 +49,7 @@ CREATE TABLE branch_suppliers
 );
 ALTER TABLE branch_suppliers
     ADD CONSTRAINT fk_branch_supplier_branches FOREIGN KEY (branch_id) REFERENCES branches (branch_id)
-        ON DELETE SET NULL;
+        ON DELETE CASCADE;
 
 CREATE TABLE works_with
 (
