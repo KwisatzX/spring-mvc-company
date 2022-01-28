@@ -1,4 +1,4 @@
-package io.github.kwisatzx.springmvccompany.controllers;
+package io.github.kwisatzx.springmvccompany.controllers.rest.v1;
 
 import io.github.kwisatzx.springmvccompany.controllers.exceptions.IncorrectEntityException;
 import io.github.kwisatzx.springmvccompany.controllers.exceptions.NotFoundException;

@@ -1,9 +1,8 @@
 package io.github.kwisatzx.springmvccompany.model;
 
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -15,9 +14,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "name")
+@Getter @Setter
 @Entity
 @Table(name = "branches")
 public class Branch implements Serializable {
@@ -32,44 +29,12 @@ public class Branch implements Serializable {
     @JoinColumn(name = "manager_id")
     private Employee manager;
     @JoinColumn(name = "mgr_start_date")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd", fallbackPatterns = {"dd-mm-yyyy"})
     private LocalDate mgrStartDate;
     @OneToMany(mappedBy = "branch", fetch = FetchType.EAGER)
     private Set<Client> clients;
     @OneToMany(mappedBy = "branch", fetch = FetchType.EAGER)
     private Set<Employee> employees;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Employee getManager() {
-        return manager;
-    }
-
-    public void setManager(Employee manager_id) {
-        this.manager = manager_id;
-    }
-
-    public LocalDate getMgrStartDate() {
-        return mgrStartDate;
-    }
-
-    public void setMgrStartDate(LocalDate mgr_start_date) {
-        this.mgrStartDate = mgr_start_date;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String branch_name) {
-        this.name = branch_name;
-    }
 
     public void setBranch(Branch branch) {
         setName(branch.getName());
@@ -87,17 +52,14 @@ public class Branch implements Serializable {
         return Collections.unmodifiableSet(employees);
     }
 
-    @JsonIgnore
     public String getClientsDisplayString() {
         return getClients().stream().map(Client::toString).collect(Collectors.joining(", "));
     }
 
-    @JsonIgnore
     public String getEmployeesDisplayString() {
         return getEmployees().stream().map(Employee::toString).collect(Collectors.joining(", "));
     }
 
-    @JsonIgnore
     public boolean isNew() {
         return this.id == null;
     }
