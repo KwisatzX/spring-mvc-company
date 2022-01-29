@@ -1,4 +1,4 @@
-package io.github.kwisatzx.springmvccompany.model;
+package io.github.kwisatzx.springmvccompany.model.employee;
 
 import io.github.kwisatzx.springmvccompany.repositories.EmployeeRepository;
 import org.springframework.format.Formatter;

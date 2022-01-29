@@ -1,5 +1,6 @@
-package io.github.kwisatzx.springmvccompany.model;
+package io.github.kwisatzx.springmvccompany.model.employee;
 
+import io.github.kwisatzx.springmvccompany.model.branch.Branch;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -24,7 +25,7 @@ public class Employee implements Serializable {
     @NotEmpty
     private String lastName;
     @Column(name = "birth_day")
-    @DateTimeFormat(pattern = "yyyy-MM-dd", fallbackPatterns = {"dd-mm-yyyy"})
+    @DateTimeFormat(pattern = "yyyy-MM-dd", fallbackPatterns = {"dd-MM-yyyy"})
     private LocalDate birthDay;
     private Character sex;
     private Double salary;

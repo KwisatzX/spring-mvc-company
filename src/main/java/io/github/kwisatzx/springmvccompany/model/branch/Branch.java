@@ -1,6 +1,8 @@
-package io.github.kwisatzx.springmvccompany.model;
+package io.github.kwisatzx.springmvccompany.model.branch;
 
 
+import io.github.kwisatzx.springmvccompany.model.Client;
+import io.github.kwisatzx.springmvccompany.model.employee.Employee;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -29,7 +31,7 @@ public class Branch implements Serializable {
     @JoinColumn(name = "manager_id")
     private Employee manager;
     @JoinColumn(name = "mgr_start_date")
-    @DateTimeFormat(pattern = "yyyy-MM-dd", fallbackPatterns = {"dd-mm-yyyy"})
+    @DateTimeFormat(pattern = "yyyy-MM-dd", fallbackPatterns = {"dd-MM-yyyy"})
     private LocalDate mgrStartDate;
     @OneToMany(mappedBy = "branch", fetch = FetchType.EAGER)
     private Set<Client> clients;

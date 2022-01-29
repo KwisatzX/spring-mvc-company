@@ -1,4 +1,4 @@
-package io.github.kwisatzx.springmvccompany.model;
+package io.github.kwisatzx.springmvccompany.model.branch;
 
 import io.github.kwisatzx.springmvccompany.repositories.BranchRepository;
 import org.springframework.format.Formatter;
