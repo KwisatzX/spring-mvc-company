@@ -1,17 +1,13 @@
-package io.github.kwisatzx.springmvccompany.model.employee;
+package io.github.kwisatzx.springmvccompany.model.employee.validation;
 
-import io.github.kwisatzx.springmvccompany.repositories.EmployeeRepository;
+import io.github.kwisatzx.springmvccompany.model.employee.Employee;
+import lombok.AllArgsConstructor;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+@AllArgsConstructor
 public class EmployeeValidator implements Validator {
-
-    private final EmployeeRepository employees;
-
-    public EmployeeValidator(EmployeeRepository employees) {
-        this.employees = employees;
-    }
 
     @Override
     public boolean supports(Class<?> clazz) {

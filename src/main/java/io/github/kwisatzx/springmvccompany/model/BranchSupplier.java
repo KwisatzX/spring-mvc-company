@@ -1,4 +1,6 @@
-package io.github.kwisatzx.springmvccompany.model.branch;
+package io.github.kwisatzx.springmvccompany.model;
+
+import io.github.kwisatzx.springmvccompany.model.branch.Branch;
 
 import javax.persistence.*;
 import java.io.Serializable;

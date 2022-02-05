@@ -1,5 +1,6 @@
 package io.github.kwisatzx.springmvccompany.model;
 
+import io.github.kwisatzx.springmvccompany.model.branch.Branch;
 import lombok.Getter;
 import lombok.Setter;
 

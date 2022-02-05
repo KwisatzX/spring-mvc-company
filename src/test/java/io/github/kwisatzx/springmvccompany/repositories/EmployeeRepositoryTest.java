@@ -1,7 +1,7 @@
 package io.github.kwisatzx.springmvccompany.repositories;
 
-import io.github.kwisatzx.springmvccompany.model.Branch;
-import io.github.kwisatzx.springmvccompany.model.Employee;
+import io.github.kwisatzx.springmvccompany.model.branch.Branch;
+import io.github.kwisatzx.springmvccompany.model.employee.Employee;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
