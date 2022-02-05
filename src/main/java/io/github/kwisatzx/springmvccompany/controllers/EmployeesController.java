@@ -1,11 +1,12 @@
 package io.github.kwisatzx.springmvccompany.controllers;
 
 import io.github.kwisatzx.springmvccompany.controllers.exceptions.NotFoundException;
-import io.github.kwisatzx.springmvccompany.model.Branch;
-import io.github.kwisatzx.springmvccompany.model.Employee;
-import io.github.kwisatzx.springmvccompany.model.EmployeeValidator;
-import io.github.kwisatzx.springmvccompany.repositories.BranchRepository;
-import io.github.kwisatzx.springmvccompany.repositories.EmployeeRepository;
+import io.github.kwisatzx.springmvccompany.model.branch.Branch;
+import io.github.kwisatzx.springmvccompany.model.employee.Employee;
+import io.github.kwisatzx.springmvccompany.model.employee.validation.EmployeeValidator;
+import io.github.kwisatzx.springmvccompany.services.BranchService;
+import io.github.kwisatzx.springmvccompany.services.EmployeeService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,26 +17,21 @@ import javax.validation.Valid;
 import java.util.Collection;
 import java.util.List;
 
+@AllArgsConstructor
 @Controller
 public class EmployeesController {
 
-    private final EmployeeRepository employees;
-    private final BranchRepository branches;
-
-    public EmployeesController(EmployeeRepository employeeRepository,
-                               BranchRepository branchRepository) {
-        this.employees = employeeRepository;
-        this.branches = branchRepository;
-    }
+    private final EmployeeService employeeService;
+    private final BranchService branchService;
 
     @ModelAttribute("superiors")
     public Collection<Employee> getEmployeeList() {
-        return employees.findByLastName("");
+        return employeeService.findAllByLastName("");
     }
 
     @ModelAttribute("branches")
     public Collection<Branch> getBranchList() {
-        return branches.getAllBranches();
+        return branchService.getAllBranches();
     }
 
     @ModelAttribute("sex")
@@ -46,7 +42,7 @@ public class EmployeesController {
     @InitBinder
     public void dataBinderInit(WebDataBinder dataBinder) {
         dataBinder.setDisallowedFields("id");
-        dataBinder.setValidator(new EmployeeValidator(employees));
+        dataBinder.setValidator(new EmployeeValidator());
     }
 
     @GetMapping("/employees/find")
@@ -57,7 +53,7 @@ public class EmployeesController {
 
     @DeleteMapping("/employees/{empId}")
     public String deleteEmployee(@PathVariable Long empId) {
-        employees.deleteById(empId);
+        employeeService.deleteById(empId);
         return "redirect:/employees";
     }
 
@@ -65,7 +61,7 @@ public class EmployeesController {
     public String processFindForm(Employee employee, BindingResult bindingResult, Model model) {
         if (employee.getLastName() == null) employee.setLastName("");
 
-        Collection<Employee> results = employees.findByLastName(employee.getLastName());
+        Collection<Employee> results = employeeService.findAllByLastName(employee.getLastName());
         if (results.isEmpty()) {
             bindingResult.rejectValue("lastName", "", "not found");
             return "empl/findEmployees";
@@ -80,7 +76,7 @@ public class EmployeesController {
 
     @GetMapping("/employees/{empId}")
     public String empDetails(@PathVariable Long empId, Model model) {
-        Employee employee = employees.findById(empId)
+        Employee employee = employeeService.findById(empId)
                 .orElseThrow(() -> new NotFoundException("Employee not found (id:" + empId + ")"));
         model.addAttribute("emp", employee);
         return "empl/employeeDetails";
@@ -88,7 +84,7 @@ public class EmployeesController {
 
     @GetMapping("/employees/{empId}/edit")
     public String initEditForm(@PathVariable Long empId, Model model) {
-        Employee employee = employees.findById(empId)
+        Employee employee = employeeService.findById(empId)
                 .orElseThrow(() -> new NotFoundException("Employee not found (id:" + empId + ")"));
         model.addAttribute("emp", employee);
         return "empl/employeeNewOrEdit";
@@ -100,9 +96,9 @@ public class EmployeesController {
                                BindingResult bindingResult) {
         if (bindingResult.hasErrors()) return "empl/employeeNewOrEdit";
         else {
-            employees.findById(empId).ifPresent(employee -> {
+            employeeService.findById(empId).ifPresent(employee -> {
                 employee.setEmployee(newEmployee);
-                employees.save(employee);
+                employeeService.save(employee);
             });
             return "redirect:/employees/" + empId;
         }
@@ -116,12 +112,13 @@ public class EmployeesController {
 
     @PostMapping("/employees/new")
     public String newEmployeePost(@Valid @ModelAttribute("emp") Employee emp, BindingResult bindingResult) {
-        if (employees.existsByFirstNameAndLastName(emp.getFirstName(), emp.getLastName())) {
-            bindingResult.rejectValue("firstName", "", "Duplicate entry for " + emp);
+        if (employeeService.existsByFirstNameAndLastNameAndBirthDay(
+                emp.getFirstName(), emp.getLastName(), emp.getBirthDay())) {
+            bindingResult.rejectValue(null, "", "Duplicate entry for " + emp + " born " + emp.getBirthDay());
         }
         if (bindingResult.hasErrors()) return "empl/employeeNewOrEdit";
         else {
-            employees.save(emp);
+            employeeService.save(emp);
             return "redirect:/employees/" + emp.getId();
         }
     }

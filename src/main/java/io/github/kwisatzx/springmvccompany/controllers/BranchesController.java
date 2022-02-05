@@ -1,8 +1,8 @@
 package io.github.kwisatzx.springmvccompany.controllers;
 
 import io.github.kwisatzx.springmvccompany.controllers.exceptions.NotFoundException;
-import io.github.kwisatzx.springmvccompany.model.Branch;
-import io.github.kwisatzx.springmvccompany.model.Employee;
+import io.github.kwisatzx.springmvccompany.model.branch.Branch;
+import io.github.kwisatzx.springmvccompany.model.employee.Employee;
 import io.github.kwisatzx.springmvccompany.repositories.BranchRepository;
 import io.github.kwisatzx.springmvccompany.repositories.EmployeeRepository;
 import org.springframework.stereotype.Controller;
