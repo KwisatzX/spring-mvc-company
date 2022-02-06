@@ -1,4 +1,4 @@
-package io.github.kwisatzx.springmvccompany.model.branch;
+package io.github.kwisatzx.springmvccompany.model.branch.dto;
 
 import java.time.LocalDate;
 import java.util.Set;
