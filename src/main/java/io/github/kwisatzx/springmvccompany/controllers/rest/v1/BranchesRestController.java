@@ -1,54 +1,74 @@
 package io.github.kwisatzx.springmvccompany.controllers.rest.v1;
 
 import io.github.kwisatzx.springmvccompany.controllers.exceptions.NotFoundException;
-import io.github.kwisatzx.springmvccompany.model.Branch;
-import io.github.kwisatzx.springmvccompany.repositories.BranchRepository;
+import io.github.kwisatzx.springmvccompany.model.branch.Branch;
+import io.github.kwisatzx.springmvccompany.model.branch.dto.BranchGetDto;
+import io.github.kwisatzx.springmvccompany.model.branch.dto.BranchInputDto;
+import io.github.kwisatzx.springmvccompany.model.branch.dto.BranchModelMapper;
+import io.github.kwisatzx.springmvccompany.services.BranchService;
+import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
+@AllArgsConstructor
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1")
 public class BranchesRestController {
 
-    private final BranchRepository branches;
-
-    public BranchesRestController(BranchRepository branches) {
-        this.branches = branches;
-    }
+    private final BranchService service;
+    private final BranchModelMapper mapper;
 
     @GetMapping("/branches")
-    public List<Branch> listBranches() {
-        return branches.getAllBranches();
+    public List<BranchGetDto> listBranches() {
+        return service.getAllBranches().stream().map(mapper::branchToBranchGetDto).toList();
     }
 
-    @GetMapping("/branches/{branchId}")
-    public Branch branchDetails(@PathVariable Long branchId) {
-        return branches.findById(branchId)
-                .orElseThrow(() -> new NotFoundException("Branch not found (id:" + branchId + ")"));
+    @GetMapping("/branches/{id}")
+    public ResponseEntity<BranchGetDto> branchDetails(@PathVariable Long id) {
+        Optional<Branch> result = service.findById(id);
+        if (result.isPresent()) return ResponseEntity.ok(mapper.branchToBranchGetDto(result.get()));
+        else throw new NotFoundException("Branch not found (id:" + id + ")");
     }
 
-    @RequestMapping(value = "/branches/{branchId}", method = {RequestMethod.PUT, RequestMethod.POST})
-    public String branchEdit(@PathVariable Long branchId, @RequestBody Branch branchReq) {
-        branches.findById(branchId).ifPresentOrElse(branch -> {
-            branch.setName(branchReq.getName());
-            branch.setManager(branchReq.getManager());
-            branch.setMgrStartDate(branchReq.getMgrStartDate());
-        }, () -> {
-            branchReq.setId(branchId);
-            branches.save(branchReq);
-        });
-        return "redirect:/api/branches/" + branchId;
+    @Transactional
+    @PutMapping(value = "/branches/{id}")
+    public ResponseEntity<Void> branchEdit(@PathVariable Long id, @RequestBody BranchInputDto body) { //TODO Valid
+        Optional<Branch> result = service.findById(id);
+        Branch newBranch = mapper.branchInputDtoToBranch(body);
+        if (result.isPresent()) { //TODO Save on id
+            Branch dbBranch = result.get();
+            dbBranch.setName(newBranch.getName());
+            dbBranch.setManager(newBranch.getManager());
+            dbBranch.setMgrStartDate(newBranch.getMgrStartDate());
+            return ResponseEntity.noContent().location(URI.create("/branches/" + id)).build();
+        } else {
+            newBranch.setId(id);
+            Branch savedBranch = service.save(newBranch);
+            return ResponseEntity.created(URI.create("/branches/" + savedBranch.getId())).build();
+        }
     }
 
     @PostMapping("/branches/new")
-    public Branch newBranchPost(@Valid @RequestBody Branch branch) {
-        return branches.save(branch);
+    public ResponseEntity<Object> newBranchPost(@RequestBody BranchInputDto body) { //TODO Valid
+//        if (result.hasErrors()) return ResponseEntity.status(422).build(); //+errors in json?
+        if (service.existsByName(body.name()))
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body("Branch with that name already exists: " + body.name());
+        else {
+            Branch savedBranch = service.save(mapper.branchInputDtoToBranch(body));
+            return ResponseEntity.created(URI.create("/branches/" + savedBranch.getId())).build();
+        }
     }
 
-    @DeleteMapping("/branches/{branchId}")
-    public void deleteBranch(@PathVariable Long branchId) {
-        branches.deleteById(branchId);
+    @DeleteMapping("/branches/{id}")
+    public ResponseEntity<Void> deleteBranch(@PathVariable Long id) {
+        service.deleteById(id);
+        return ResponseEntity.ok().build();
     }
 }
