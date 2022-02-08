@@ -1,7 +1,7 @@
 package io.github.kwisatzx.springmvccompany.model.branch.dto;
 
-import io.github.kwisatzx.springmvccompany.model.Client;
 import io.github.kwisatzx.springmvccompany.model.branch.Branch;
+import io.github.kwisatzx.springmvccompany.model.client.Client;
 import io.github.kwisatzx.springmvccompany.model.employee.Employee;
 import io.github.kwisatzx.springmvccompany.services.BranchService;
 import org.mapstruct.Mapper;

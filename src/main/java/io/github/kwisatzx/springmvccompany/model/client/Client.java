@@ -1,4 +1,4 @@
-package io.github.kwisatzx.springmvccompany.model;
+package io.github.kwisatzx.springmvccompany.model.client;
 
 import io.github.kwisatzx.springmvccompany.model.branch.Branch;
 import lombok.Getter;

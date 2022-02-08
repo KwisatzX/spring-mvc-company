@@ -1,6 +1,9 @@
 package io.github.kwisatzx.springmvccompany.model.branch;
 
-import io.github.kwisatzx.springmvccompany.model.Client;
+import io.github.kwisatzx.springmvccompany.model.branch.dto.BranchGetDto;
+import io.github.kwisatzx.springmvccompany.model.branch.dto.BranchInputDto;
+import io.github.kwisatzx.springmvccompany.model.branch.dto.BranchModelMapper;
+import io.github.kwisatzx.springmvccompany.model.client.Client;
 import io.github.kwisatzx.springmvccompany.model.employee.Employee;
 import io.github.kwisatzx.springmvccompany.services.BranchService;
 import org.junit.jupiter.api.BeforeEach;

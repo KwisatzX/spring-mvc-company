@@ -1,6 +1,7 @@
 package io.github.kwisatzx.springmvccompany.model;
 
 
+import io.github.kwisatzx.springmvccompany.model.client.Client;
 import io.github.kwisatzx.springmvccompany.model.employee.Employee;
 import lombok.Getter;
 import lombok.Setter;

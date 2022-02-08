@@ -33,7 +33,7 @@ public class BranchesRestController {
     public ResponseEntity<BranchGetDto> branchDetails(@PathVariable Long id) {
         Optional<Branch> result = service.findById(id);
         if (result.isPresent()) return ResponseEntity.ok(mapper.branchToBranchGetDto(result.get()));
-        else throw new NotFoundException("Branch not found (id:" + id + ")");
+        else throw new NotFoundException();
     }
 
     @Transactional
