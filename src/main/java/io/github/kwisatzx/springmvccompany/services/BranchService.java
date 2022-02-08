@@ -1,8 +1,8 @@
 package io.github.kwisatzx.springmvccompany.services;
 
 import io.github.kwisatzx.springmvccompany.model.BranchSupplier;
-import io.github.kwisatzx.springmvccompany.model.Client;
 import io.github.kwisatzx.springmvccompany.model.branch.Branch;
+import io.github.kwisatzx.springmvccompany.model.client.Client;
 import io.github.kwisatzx.springmvccompany.model.employee.Employee;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +12,12 @@ import java.util.Set;
 
 @Service
 public interface BranchService {
+
+    Optional<Branch> findById(Long id);
+
+    void deleteById(Long id);
+
+    Branch save(Branch branch);
 
     List<Branch> getAllBranches();
 

@@ -1,8 +1,8 @@
 package io.github.kwisatzx.springmvccompany.services;
 
 import io.github.kwisatzx.springmvccompany.model.BranchSupplier;
-import io.github.kwisatzx.springmvccompany.model.Client;
 import io.github.kwisatzx.springmvccompany.model.branch.Branch;
+import io.github.kwisatzx.springmvccompany.model.client.Client;
 import io.github.kwisatzx.springmvccompany.model.employee.Employee;
 import io.github.kwisatzx.springmvccompany.repositories.BranchRepository;
 import io.github.kwisatzx.springmvccompany.repositories.ClientRepository;
@@ -23,6 +23,18 @@ public class BranchServiceImpl implements BranchService {
 
     @Override public List<Branch> getAllBranches() {
         return branchRepository.getAllBranches();
+    }
+
+    @Override public Optional<Branch> findById(Long id) {
+        return branchRepository.findById(id);
+    }
+
+    @Override public void deleteById(Long id) {
+        branchRepository.deleteById(id);
+    }
+
+    @Override public Branch save(Branch branch) {
+        return branchRepository.save(branch);
     }
 
     @Override public boolean existsByName(String name) {
