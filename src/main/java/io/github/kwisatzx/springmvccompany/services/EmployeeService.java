@@ -24,9 +24,9 @@ public interface EmployeeService {
 
     Optional<Employee> findById(Long id);
 
-    void save(Employee employee);
+    Employee save(Employee employee);
 
-    boolean deleteById(Long id);
+    void deleteById(Long id);
 
     boolean existsByFirstNameAndLastNameAndBirthDay(String firstName, String lastName, LocalDate birthDay);
 

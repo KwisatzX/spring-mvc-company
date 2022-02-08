@@ -42,12 +42,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.findById(id);
     }
 
-    @Override public void save(Employee employee) {
-        employeeRepository.save(employee);
+    @Override public Employee save(Employee employee) {
+        return employeeRepository.save(employee);
     }
 
-    @Override public boolean deleteById(Long id) {
-        return employeeRepository.deleteById(id);
+    @Override public void deleteById(Long id) {
+        employeeRepository.deleteById(id);
     }
 
     @Override

@@ -26,9 +26,9 @@ public interface EmployeeRepository extends Repository<Employee, Long> {
 
     Collection<Employee> findAllByBranchId(Long id);
 
-    void save(Employee employee);
+    Employee save(Employee employee);
 
-    boolean deleteById(Long id);
+    void deleteById(Long id);
 
     boolean existsByFirstNameAndLastNameAndBirthDay(String firstName, String lastName, LocalDate birthDay);
 }
