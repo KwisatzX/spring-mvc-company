@@ -1,12 +1,13 @@
 package io.github.kwisatzx.springmvccompany.services;
 
-import io.github.kwisatzx.springmvccompany.model.BranchSupplier;
 import io.github.kwisatzx.springmvccompany.model.branch.Branch;
 import io.github.kwisatzx.springmvccompany.model.client.Client;
 import io.github.kwisatzx.springmvccompany.model.employee.Employee;
+import io.github.kwisatzx.springmvccompany.model.supplier.BranchSupplier;
 import io.github.kwisatzx.springmvccompany.repositories.BranchRepository;
 import io.github.kwisatzx.springmvccompany.repositories.ClientRepository;
 import io.github.kwisatzx.springmvccompany.repositories.EmployeeRepository;
+import io.github.kwisatzx.springmvccompany.repositories.SupplierRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +21,7 @@ public class BranchServiceImpl implements BranchService {
     private final BranchRepository branchRepository;
     private final EmployeeRepository employeeRepository;
     private final ClientRepository clientRepository;
+    private final SupplierRepository supplierRepository;
 
     @Override public List<Branch> getAllBranches() {
         return branchRepository.getAllBranches();
@@ -42,7 +44,7 @@ public class BranchServiceImpl implements BranchService {
     }
 
     @Override public List<BranchSupplier> getBranchSuppliers() {
-        return branchRepository.getBranchSuppliers();
+        return (List<BranchSupplier>) supplierRepository.findAll();
     }
 
     @Override public Optional<Employee> findEmployeeById(Long id) {

@@ -1,25 +1,23 @@
 package io.github.kwisatzx.springmvccompany.controllers;
 
-import io.github.kwisatzx.springmvccompany.model.BranchSupplier;
-import io.github.kwisatzx.springmvccompany.repositories.BranchRepository;
+import io.github.kwisatzx.springmvccompany.model.supplier.BranchSupplier;
+import io.github.kwisatzx.springmvccompany.services.SupplierService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
+@AllArgsConstructor
 @Controller
 public class SuppliersController {
 
-    private final BranchRepository branchRepository;
-
-    public SuppliersController(BranchRepository branchRepository) {
-        this.branchRepository = branchRepository;
-    }
+    private final SupplierService service;
 
     @GetMapping("/suppliers")
     public String listBranchSuppliers(Model model) {
-        List<BranchSupplier> results = branchRepository.getBranchSuppliers();
+        List<BranchSupplier> results = (List<BranchSupplier>) service.getAll();
         model.addAttribute("suppliers", results);
         return "branches/branchSupplierList";
     }
