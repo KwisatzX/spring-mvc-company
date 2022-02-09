@@ -1,9 +1,9 @@
 package io.github.kwisatzx.springmvccompany.services;
 
-import io.github.kwisatzx.springmvccompany.model.BranchSupplier;
 import io.github.kwisatzx.springmvccompany.model.branch.Branch;
 import io.github.kwisatzx.springmvccompany.model.client.Client;
 import io.github.kwisatzx.springmvccompany.model.employee.Employee;
+import io.github.kwisatzx.springmvccompany.model.supplier.BranchSupplier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

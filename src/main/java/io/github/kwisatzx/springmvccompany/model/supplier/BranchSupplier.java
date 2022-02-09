@@ -1,11 +1,15 @@
-package io.github.kwisatzx.springmvccompany.model;
+package io.github.kwisatzx.springmvccompany.model.supplier;
 
 import io.github.kwisatzx.springmvccompany.model.branch.Branch;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Getter @Setter
+@IdClass(BranchSupplierId.class)
 @Table(name = "branch_suppliers")
 public class BranchSupplier implements Serializable {
     @Id
@@ -14,33 +18,9 @@ public class BranchSupplier implements Serializable {
     private Branch branch;
     @Id
     @Column(name = "supplier_name")
-    private String supplier;
+    private String supplierName;
     @Column(name = "supply_type")
     private String type;
-
-    public Branch getBranch() {
-        return branch;
-    }
-
-    public void setBranch(Branch branch) {
-        this.branch = branch;
-    }
-
-    public String getSupplier() {
-        return supplier;
-    }
-
-    public void setSupplier(String supplier) {
-        this.supplier = supplier;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -50,18 +30,18 @@ public class BranchSupplier implements Serializable {
         BranchSupplier that = (BranchSupplier) o;
 
         if (!branch.equals(that.branch)) return false;
-        return supplier.equals(that.supplier);
+        return supplierName.equals(that.supplierName);
     }
 
     @Override
     public int hashCode() {
         int result = branch.hashCode();
-        result = 31 * result + supplier.hashCode();
+        result = 31 * result + supplierName.hashCode();
         return result;
     }
 
     @Override
     public String toString() {
-        return supplier;
+        return supplierName;
     }
 }
