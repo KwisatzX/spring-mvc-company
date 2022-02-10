@@ -17,7 +17,7 @@ public class SuppliersController {
 
     @GetMapping("/suppliers")
     public String listBranchSuppliers(Model model) {
-        List<BranchSupplier> results = (List<BranchSupplier>) service.getAll();
+        List<BranchSupplier> results = (List<BranchSupplier>) service.findAll();
         model.addAttribute("suppliers", results);
         return "branches/branchSupplierList";
     }

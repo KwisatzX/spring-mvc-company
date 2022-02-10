@@ -14,7 +14,7 @@ public interface EmployeeService {
 
     Collection<Employee> findAllByLastName(String lastName);
 
-    Collection<Employee> getAllBy();
+    Collection<Employee> findAll();
 
     Collection<Employee> findAllByBranchId(Long branchId);
 

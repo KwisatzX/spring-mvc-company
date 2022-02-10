@@ -24,8 +24,8 @@ public class EmployeeFormatter implements Formatter<Employee> {
 
     @Override
     public Employee parse(String empToString, Locale locale) throws ParseException {
-        Collection<Employee> employees = this.employees.findByLastName("");
-        for (Employee emp : employees) {
+        Collection<Employee> employeeList = (Collection<Employee>) employees.findAll();
+        for (Employee emp : employeeList) {
             if (emp.toString().equals(empToString)) return emp;
         }
         throw new ParseException("employee not found: " + empToString, 0);

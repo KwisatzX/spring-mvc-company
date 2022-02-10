@@ -33,7 +33,7 @@ public class EmployeeRepositoryTest {
         employee.setBranch(branch);
         employee.setSalary(100.000);
         employeeRepository.save(employee);
-        Collection<Employee> result = employeeRepository.findByLastName("Smith");
+        Collection<Employee> result = employeeRepository.findDistinctByLastNameContainingIgnoreCase("Smith");
         assertFalse(result.isEmpty());
         Employee resultEmployee = result.iterator().next();
         assertEquals("John", resultEmployee.getFirstName());

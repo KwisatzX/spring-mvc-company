@@ -19,11 +19,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final BranchRepository branchRepository;
 
     @Override public Collection<Employee> findAllByLastName(String lastName) {
-        return employeeRepository.findByLastName(lastName);
+        return employeeRepository.findDistinctByLastNameContainingIgnoreCase(lastName);
     }
 
-    @Override public Collection<Employee> getAllBy() {
-        return employeeRepository.getAllBy();
+    @Override public Collection<Employee> findAll() {
+        return (Collection<Employee>) employeeRepository.findAll();
     }
 
     @Override public Collection<Employee> findAllByBranchId(Long branchId) {
@@ -35,7 +35,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override public Collection<Employee> findAllById(Set<Long> ids) {
-        return employeeRepository.findAllById(ids);
+        return (Collection<Employee>) employeeRepository.findAllById(ids);
     }
 
     @Override public Optional<Employee> findById(Long id) {

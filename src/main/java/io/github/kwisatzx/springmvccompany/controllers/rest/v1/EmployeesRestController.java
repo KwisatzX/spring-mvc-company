@@ -36,7 +36,7 @@ public class EmployeesRestController {
 
     @GetMapping("/employees")
     public Collection<EmployeeGetDto> getEmployees() { //TODO pagination
-        return service.getAllBy().stream().map(mapper::employeeToEmployeeGetDto).toList();
+        return service.findAll().stream().map(mapper::employeeToEmployeeGetDto).toList();
     }
 
     @GetMapping("/employees/{id}")
