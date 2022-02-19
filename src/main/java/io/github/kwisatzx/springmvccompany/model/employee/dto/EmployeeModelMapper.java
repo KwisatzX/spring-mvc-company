@@ -17,6 +17,7 @@ public abstract class EmployeeModelMapper {
 
     @Mapping(target = "superior", expression = "java(employeeService.findById(employeeInputDto.superiorId()).get())")
     @Mapping(target = "branch", expression = "java(employeeService.findBranchById(employeeInputDto.branchId()).get())")
+    @Mapping(target = "sex", expression = "java(Character.toUpperCase(employeeInputDto.sex()))")
     public abstract Employee employeeInputDtoToEmployee(EmployeeInputDto employeeInputDto);
 
     @Autowired
