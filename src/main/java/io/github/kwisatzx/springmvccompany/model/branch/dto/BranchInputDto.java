@@ -9,4 +9,9 @@ public record BranchInputDto(
         LocalDate mgrStartDate,
         Set<Long> clientIds,
         Set<Long> employeeIds
-) {}
+) {
+    public BranchInputDto {
+        clientIds = Set.copyOf(clientIds);
+        employeeIds = Set.copyOf(employeeIds);
+    }
+}

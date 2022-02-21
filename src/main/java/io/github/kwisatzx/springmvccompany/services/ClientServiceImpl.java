@@ -26,8 +26,12 @@ public class ClientServiceImpl implements ClientService {
         return clientRepository.save(client);
     }
 
-    @Override public Collection<Client> getAllClients() {
+    @Override public Collection<Client> findAll() {
         return (Collection<Client>) clientRepository.findAll();
+    }
+
+    @Override public Collection<Client> findAllForBranch(Branch branch) {
+        return (Collection<Client>) clientRepository.findAllByBranch(branch);
     }
 
     @Override public Collection<Client> findAllByIds(Set<Long> ids) {
@@ -38,7 +42,19 @@ public class ClientServiceImpl implements ClientService {
         return branchRepository.findById(id);
     }
 
+    @Override public boolean existsById(Long id) {
+        return clientRepository.existsById(id);
+    }
+
+    @Override public boolean branchExistsById(Long id) {
+        return branchRepository.existsById(id);
+    }
+
     @Override public boolean existsByName(String name) {
         return clientRepository.existsByName(name);
+    }
+
+    @Override public void deleteById(Long id) {
+        clientRepository.deleteById(id);
     }
 }

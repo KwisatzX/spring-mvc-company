@@ -13,11 +13,19 @@ public interface ClientService {
 
     Client save(Client client);
 
-    Collection<Client> getAllClients();
+    Collection<Client> findAll();
+
+    Collection<Client> findAllForBranch(Branch branch);
 
     Collection<Client> findAllByIds(Set<Long> ids);
 
     Optional<Branch> findBranchById(Long id);
 
+    boolean existsById(Long id);
+
+    boolean branchExistsById(Long id);
+
     boolean existsByName(String name);
+
+    void deleteById(Long id);
 }
