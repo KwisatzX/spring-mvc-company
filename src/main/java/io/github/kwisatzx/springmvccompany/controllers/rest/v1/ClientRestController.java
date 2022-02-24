@@ -1,7 +1,7 @@
 package io.github.kwisatzx.springmvccompany.controllers.rest.v1;
 
 import io.github.kwisatzx.springmvccompany.controllers.exceptions.DuplicateException;
-import io.github.kwisatzx.springmvccompany.controllers.exceptions.IncorrectEntityException;
+import io.github.kwisatzx.springmvccompany.controllers.exceptions.InvalidEntityException;
 import io.github.kwisatzx.springmvccompany.controllers.exceptions.NotFoundException;
 import io.github.kwisatzx.springmvccompany.model.client.Client;
 import io.github.kwisatzx.springmvccompany.model.client.dto.ClientGetDto;
@@ -57,9 +57,11 @@ public class ClientRestController {
     }
 
     @PostMapping("/clients")
-    public ResponseEntity<ClientGetDto> createNewClient(@RequestBody @Valid ClientInputDto body, BindingResult result) {
-        if (result.hasErrors()) throw new IncorrectEntityException();
-        if (service.existsByName(body.name())) throw new DuplicateException();
+    public ResponseEntity<ClientGetDto> createNewClient(@RequestBody @Valid ClientInputDto body, BindingResult result)
+            throws InvalidEntityException {
+        if (result.hasErrors()) throw new InvalidEntityException(result);
+        if (service.existsByName(body.name()))
+            throw new DuplicateException("Client with name '" + body.name() + "' already exists");
         else {
             Client saved = service.save(mapper.clientInputDtoToClient(body));
             return ResponseEntity.created(URI.create("/clients/" + saved.getId()))
@@ -71,8 +73,8 @@ public class ClientRestController {
     @PutMapping("/clients/{id}")
     public ResponseEntity<ClientGetDto> editClient(@PathVariable Long id,
                                                    @RequestBody @Valid ClientInputDto body,
-                                                   BindingResult result) {
-        if (result.hasErrors()) throw new IncorrectEntityException();
+                                                   BindingResult result) throws InvalidEntityException {
+        if (result.hasErrors()) throw new InvalidEntityException(result);
         Optional<Client> byId = service.findById(id);
         Client requestClient = mapper.clientInputDtoToClient(body);
         if (byId.isPresent()) {

@@ -60,8 +60,8 @@ CREATE TABLE works_with
 );
 ALTER TABLE works_with
     ADD CONSTRAINT fk_works_with_employees FOREIGN KEY (employee_id) REFERENCES employees (employee_id)
-        ON DELETE SET NULL;
+        ON DELETE CASCADE;
 ALTER TABLE works_with
     ADD CONSTRAINT fk_works_with_clients FOREIGN KEY (client_id) REFERENCES clients (client_id)
-        ON DELETE SET NULL;
+        ON DELETE CASCADE;
 

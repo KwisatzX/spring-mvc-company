@@ -1,4 +1,4 @@
-package io.github.kwisatzx.springmvccompany.controllers;
+package io.github.kwisatzx.springmvccompany.controllers.web;
 
 import io.github.kwisatzx.springmvccompany.controllers.exceptions.NotFoundException;
 import io.github.kwisatzx.springmvccompany.model.branch.Branch;
@@ -42,7 +42,7 @@ public class BranchesController {
     @GetMapping("/branches/{branchId}")
     public String branchDetails(@PathVariable Long branchId, Model model) {
         Branch branch = branchService.findById(branchId)
-                .orElseThrow(() -> new NotFoundException("Branch not found (id:" + branchId + ")"));
+                .orElseThrow(NotFoundException::new);
         model.addAttribute("branch", branch);
         return "branches/branchDetails";
     }
@@ -56,7 +56,7 @@ public class BranchesController {
     @GetMapping("/branches/{branchId}/edit")
     public String initEditForm(@PathVariable Long branchId, Model model) {
         Branch branch = branchService.findById(branchId)
-                .orElseThrow(() -> new NotFoundException("Branch not found (id:" + branchId + ")"));
+                .orElseThrow(NotFoundException::new);
         model.addAttribute("branch", branch);
         return "branches/branchNewOrEdit";
     }

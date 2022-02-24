@@ -1,4 +1,4 @@
-package io.github.kwisatzx.springmvccompany.controllers;
+package io.github.kwisatzx.springmvccompany.controllers.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,4 +1,4 @@
-package io.github.kwisatzx.springmvccompany.controllers;
+package io.github.kwisatzx.springmvccompany.controllers.web;
 
 import io.github.kwisatzx.springmvccompany.model.supplier.BranchSupplier;
 import io.github.kwisatzx.springmvccompany.services.SupplierService;

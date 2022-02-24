@@ -1,7 +1,7 @@
 package io.github.kwisatzx.springmvccompany.controllers.rest.v1;
 
 import io.github.kwisatzx.springmvccompany.controllers.exceptions.DuplicateException;
-import io.github.kwisatzx.springmvccompany.controllers.exceptions.IncorrectEntityException;
+import io.github.kwisatzx.springmvccompany.controllers.exceptions.InvalidEntityException;
 import io.github.kwisatzx.springmvccompany.model.supplier.BranchSupplier;
 import io.github.kwisatzx.springmvccompany.model.supplier.BranchSupplierId;
 import io.github.kwisatzx.springmvccompany.model.supplier.dto.SupplierGetDto;
@@ -45,11 +45,13 @@ public class SuppliersRestController {
     }
 
     @PostMapping("/suppliers")
-    public ResponseEntity<Void> createSupplier(@RequestBody @Valid SupplierInputDto body, BindingResult result) {
-        if (result.hasErrors()) throw new IncorrectEntityException();
+    public ResponseEntity<Void> createSupplier(@RequestBody @Valid SupplierInputDto body, BindingResult result)
+            throws InvalidEntityException {
+        if (result.hasErrors()) throw new InvalidEntityException(result);
         BranchSupplier newSupplier = mapper.supplierInputDtoToSupplier(body);
         if (service.existsById(new BranchSupplierId(newSupplier.getBranch(), newSupplier.getSupplierName()))) {
-            throw new DuplicateException();
+            throw new DuplicateException("Supplier with name '" + body.supplierName() + "' and branch id '" +
+                                                 body.branchId() + "' already exists");
         } else {
             BranchSupplier saved = service.save(newSupplier);
             return ResponseEntity.noContent().location(

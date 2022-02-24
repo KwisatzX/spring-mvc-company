@@ -1,7 +1,7 @@
 package io.github.kwisatzx.springmvccompany.controllers.rest.v1;
 
 import io.github.kwisatzx.springmvccompany.controllers.exceptions.DuplicateException;
-import io.github.kwisatzx.springmvccompany.controllers.exceptions.IncorrectEntityException;
+import io.github.kwisatzx.springmvccompany.controllers.exceptions.InvalidEntityException;
 import io.github.kwisatzx.springmvccompany.controllers.exceptions.NotFoundException;
 import io.github.kwisatzx.springmvccompany.model.employee.Employee;
 import io.github.kwisatzx.springmvccompany.model.employee.dto.EmployeeGetDto;
@@ -57,8 +57,8 @@ public class EmployeesRestController {
     @PutMapping(value = "/employees/{id}")
     public ResponseEntity<EmployeeGetDto> editEmployee(@PathVariable Long id,
                                                        @RequestBody @Valid EmployeeInputDto body,
-                                                       BindingResult result) {
-        if (result.hasErrors()) throw new IncorrectEntityException();
+                                                       BindingResult result) throws InvalidEntityException {
+        if (result.hasErrors()) throw new InvalidEntityException(result);
         Employee requestEmployee = mapper.employeeInputDtoToEmployee(body);
         Optional<Employee> byId = service.findById(id);
         if (byId.isPresent()) {
@@ -79,10 +79,12 @@ public class EmployeesRestController {
     }
 
     @PostMapping("/employees")
-    public ResponseEntity<EmployeeGetDto> newEmployee(@RequestBody @Valid EmployeeInputDto body, BindingResult result) {
-        if (result.hasErrors()) throw new IncorrectEntityException();
+    public ResponseEntity<EmployeeGetDto> newEmployee(@RequestBody @Valid EmployeeInputDto body, BindingResult result)
+            throws InvalidEntityException {
+        if (result.hasErrors()) throw new InvalidEntityException(result);
         if (service.existsByFirstNameAndLastNameAndBirthDay(body.firstName(), body.lastName(), body.birthDay())) {
-            throw new DuplicateException();
+            throw new DuplicateException("Employee with name '" + body.firstName() + " " + body.lastName()
+                                                 + "' and birthday '" + body.birthDay() + "' already exists");
         } else {
             Employee saved = service.save(mapper.employeeInputDtoToEmployee(body));
             return ResponseEntity.created(URI.create("/employees/" + saved.getId()))

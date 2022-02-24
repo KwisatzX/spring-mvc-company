@@ -4,8 +4,8 @@ import io.github.kwisatzx.springmvccompany.model.employee.dto.EmployeeInputDto;
 import io.github.kwisatzx.springmvccompany.services.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import java.time.LocalDate;
@@ -21,9 +21,11 @@ public class EmployeeInputDtoValidator implements Validator { //TODO test
     }
 
     @Override public void validate(Object target, Errors errors) {
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "Field empty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "Field empty");
         EmployeeInputDto dto = (EmployeeInputDto) target;
+        if (!StringUtils.hasText(dto.firstName()))
+            errors.rejectValue("firstName", "", "Field 'firstName' is empty or null");
+        if (!StringUtils.hasText(dto.lastName()))
+            errors.rejectValue("lastName", "", "Field 'lastName' is empty or null");
         if (dto.birthDay().isAfter(LocalDate.now().minusYears(18)))
             errors.rejectValue("birthDay", "", "Employee is under 18 years old");
         if (!(dto.sex() == 'm' || dto.sex() == 'M' || dto.sex() == 'f' || dto.sex() == 'F'))

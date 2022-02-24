@@ -1,7 +1,7 @@
 package io.github.kwisatzx.springmvccompany.controllers.rest.v1;
 
 import io.github.kwisatzx.springmvccompany.controllers.exceptions.DuplicateException;
-import io.github.kwisatzx.springmvccompany.controllers.exceptions.IncorrectEntityException;
+import io.github.kwisatzx.springmvccompany.controllers.exceptions.InvalidEntityException;
 import io.github.kwisatzx.springmvccompany.controllers.exceptions.NotFoundException;
 import io.github.kwisatzx.springmvccompany.model.branch.Branch;
 import io.github.kwisatzx.springmvccompany.model.branch.dto.BranchGetDto;
@@ -51,8 +51,8 @@ public class BranchesRestController {
     @PutMapping(value = "/branches/{id}")
     public ResponseEntity<BranchGetDto> branchEdit(@PathVariable Long id,
                                                    @RequestBody @Valid BranchInputDto body,
-                                                   BindingResult result) {
-        if (result.hasErrors()) throw new IncorrectEntityException();
+                                                   BindingResult result) throws InvalidEntityException {
+        if (result.hasErrors()) throw new InvalidEntityException(result);
         Optional<Branch> byId = service.findById(id);
         Branch requestBranch = mapper.branchInputDtoToBranch(body);
         if (byId.isPresent()) {
@@ -70,9 +70,11 @@ public class BranchesRestController {
     }
 
     @PostMapping("/branches")
-    public ResponseEntity<BranchGetDto> newBranchPost(@RequestBody @Valid BranchInputDto body, BindingResult result) {
-        if (result.hasErrors()) throw new IncorrectEntityException();
-        if (service.existsByName(body.name())) throw new DuplicateException();
+    public ResponseEntity<BranchGetDto> newBranchPost(@RequestBody @Valid BranchInputDto body, BindingResult result)
+            throws InvalidEntityException {
+        if (result.hasErrors()) throw new InvalidEntityException(result);
+        if (service.existsByName(body.name()))
+            throw new DuplicateException("Branch with name '" + body.name() + "' already exists");
         else {
             Branch savedBranch = service.save(mapper.branchInputDtoToBranch(body));
             return ResponseEntity.created(URI.create("/branches/" + savedBranch.getId()))

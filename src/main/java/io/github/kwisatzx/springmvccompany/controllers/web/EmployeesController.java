@@ -1,4 +1,4 @@
-package io.github.kwisatzx.springmvccompany.controllers;
+package io.github.kwisatzx.springmvccompany.controllers.web;
 
 import io.github.kwisatzx.springmvccompany.controllers.exceptions.NotFoundException;
 import io.github.kwisatzx.springmvccompany.model.branch.Branch;
@@ -77,7 +77,7 @@ public class EmployeesController {
     @GetMapping("/employees/{empId}")
     public String empDetails(@PathVariable Long empId, Model model) {
         Employee employee = employeeService.findById(empId)
-                .orElseThrow(() -> new NotFoundException("Employee not found (id:" + empId + ")"));
+                .orElseThrow(NotFoundException::new);
         model.addAttribute("emp", employee);
         return "empl/employeeDetails";
     }
@@ -85,7 +85,7 @@ public class EmployeesController {
     @GetMapping("/employees/{empId}/edit")
     public String initEditForm(@PathVariable Long empId, Model model) {
         Employee employee = employeeService.findById(empId)
-                .orElseThrow(() -> new NotFoundException("Employee not found (id:" + empId + ")"));
+                .orElseThrow(NotFoundException::new);
         model.addAttribute("emp", employee);
         return "empl/employeeNewOrEdit";
     }
@@ -111,12 +111,12 @@ public class EmployeesController {
     }
 
     @PostMapping("/employees/new")
-    public String newEmployeePost(@Valid @ModelAttribute("emp") Employee emp, BindingResult bindingResult) {
+    public String newEmployeePost(@Valid @ModelAttribute("emp") Employee emp, BindingResult result) {
         if (employeeService.existsByFirstNameAndLastNameAndBirthDay(
                 emp.getFirstName(), emp.getLastName(), emp.getBirthDay())) {
-            bindingResult.rejectValue(null, "", "Duplicate entry for " + emp + " born " + emp.getBirthDay());
+            result.rejectValue(null, "", "Duplicate entry for " + emp + " born " + emp.getBirthDay());
         }
-        if (bindingResult.hasErrors()) return "empl/employeeNewOrEdit";
+        if (result.hasErrors()) return "empl/employeeNewOrEdit";
         else {
             employeeService.save(emp);
             return "redirect:/employees/" + emp.getId();
