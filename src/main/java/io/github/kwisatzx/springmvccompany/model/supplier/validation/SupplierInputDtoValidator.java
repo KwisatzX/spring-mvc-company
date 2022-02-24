@@ -1,7 +1,7 @@
 package io.github.kwisatzx.springmvccompany.model.supplier.validation;
 
 import io.github.kwisatzx.springmvccompany.model.supplier.dto.SupplierInputDto;
-import io.github.kwisatzx.springmvccompany.services.SupplierService;
+import io.github.kwisatzx.springmvccompany.services.interfaces.SupplierService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;

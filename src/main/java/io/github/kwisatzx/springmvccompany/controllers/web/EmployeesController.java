@@ -4,8 +4,8 @@ import io.github.kwisatzx.springmvccompany.controllers.exceptions.NotFoundExcept
 import io.github.kwisatzx.springmvccompany.model.branch.Branch;
 import io.github.kwisatzx.springmvccompany.model.employee.Employee;
 import io.github.kwisatzx.springmvccompany.model.employee.validation.EmployeeValidator;
-import io.github.kwisatzx.springmvccompany.services.BranchService;
-import io.github.kwisatzx.springmvccompany.services.EmployeeService;
+import io.github.kwisatzx.springmvccompany.services.interfaces.BranchService;
+import io.github.kwisatzx.springmvccompany.services.interfaces.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

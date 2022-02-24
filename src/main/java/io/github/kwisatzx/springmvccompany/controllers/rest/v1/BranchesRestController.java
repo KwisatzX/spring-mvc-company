@@ -8,7 +8,7 @@ import io.github.kwisatzx.springmvccompany.model.branch.dto.BranchGetDto;
 import io.github.kwisatzx.springmvccompany.model.branch.dto.BranchInputDto;
 import io.github.kwisatzx.springmvccompany.model.branch.dto.BranchModelMapper;
 import io.github.kwisatzx.springmvccompany.model.branch.validation.BranchInputDtoValidator;
-import io.github.kwisatzx.springmvccompany.services.BranchService;
+import io.github.kwisatzx.springmvccompany.services.interfaces.BranchService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;

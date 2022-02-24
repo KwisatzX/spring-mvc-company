@@ -1,7 +1,7 @@
 package io.github.kwisatzx.springmvccompany.model.employee.validation;
 
 import io.github.kwisatzx.springmvccompany.model.employee.dto.EmployeeInputDto;
-import io.github.kwisatzx.springmvccompany.services.EmployeeService;
+import io.github.kwisatzx.springmvccompany.services.interfaces.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;

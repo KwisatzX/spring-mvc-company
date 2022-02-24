@@ -3,7 +3,7 @@ package io.github.kwisatzx.springmvccompany.model.branch.dto;
 import io.github.kwisatzx.springmvccompany.model.branch.Branch;
 import io.github.kwisatzx.springmvccompany.model.client.Client;
 import io.github.kwisatzx.springmvccompany.model.employee.Employee;
-import io.github.kwisatzx.springmvccompany.services.BranchService;
+import io.github.kwisatzx.springmvccompany.services.interfaces.BranchService;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;

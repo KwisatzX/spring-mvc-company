@@ -1,4 +1,4 @@
-package io.github.kwisatzx.springmvccompany.services;
+package io.github.kwisatzx.springmvccompany.services.impl;
 
 import io.github.kwisatzx.springmvccompany.model.branch.Branch;
 import io.github.kwisatzx.springmvccompany.model.client.Client;
@@ -8,6 +8,7 @@ import io.github.kwisatzx.springmvccompany.repositories.BranchRepository;
 import io.github.kwisatzx.springmvccompany.repositories.ClientRepository;
 import io.github.kwisatzx.springmvccompany.repositories.EmployeeRepository;
 import io.github.kwisatzx.springmvccompany.repositories.SupplierRepository;
+import io.github.kwisatzx.springmvccompany.services.interfaces.BranchService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 

@@ -1,7 +1,7 @@
 package io.github.kwisatzx.springmvccompany.model.client.validation;
 
 import io.github.kwisatzx.springmvccompany.model.client.dto.ClientInputDto;
-import io.github.kwisatzx.springmvccompany.services.ClientService;
+import io.github.kwisatzx.springmvccompany.services.interfaces.ClientService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;

@@ -1,4 +1,4 @@
-package io.github.kwisatzx.springmvccompany.services;
+package io.github.kwisatzx.springmvccompany.services.interfaces;
 
 import io.github.kwisatzx.springmvccompany.model.branch.Branch;
 import io.github.kwisatzx.springmvccompany.model.client.Client;

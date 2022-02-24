@@ -1,10 +1,11 @@
-package io.github.kwisatzx.springmvccompany.services;
+package io.github.kwisatzx.springmvccompany.services.impl;
 
 import io.github.kwisatzx.springmvccompany.model.branch.Branch;
 import io.github.kwisatzx.springmvccompany.model.supplier.BranchSupplier;
 import io.github.kwisatzx.springmvccompany.model.supplier.BranchSupplierId;
 import io.github.kwisatzx.springmvccompany.repositories.BranchRepository;
 import io.github.kwisatzx.springmvccompany.repositories.SupplierRepository;
+import io.github.kwisatzx.springmvccompany.services.interfaces.SupplierService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 

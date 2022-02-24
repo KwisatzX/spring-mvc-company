@@ -8,7 +8,7 @@ import io.github.kwisatzx.springmvccompany.model.supplier.dto.SupplierGetDto;
 import io.github.kwisatzx.springmvccompany.model.supplier.dto.SupplierInputDto;
 import io.github.kwisatzx.springmvccompany.model.supplier.dto.SupplierModelMapper;
 import io.github.kwisatzx.springmvccompany.model.supplier.validation.SupplierInputDtoValidator;
-import io.github.kwisatzx.springmvccompany.services.SupplierService;
+import io.github.kwisatzx.springmvccompany.services.interfaces.SupplierService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;

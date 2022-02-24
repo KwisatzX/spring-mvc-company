@@ -1,7 +1,7 @@
 package io.github.kwisatzx.springmvccompany.model.employee.dto;
 
 import io.github.kwisatzx.springmvccompany.model.employee.Employee;
-import io.github.kwisatzx.springmvccompany.services.EmployeeService;
+import io.github.kwisatzx.springmvccompany.services.interfaces.EmployeeService;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;

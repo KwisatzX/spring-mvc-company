@@ -1,7 +1,7 @@
 package io.github.kwisatzx.springmvccompany.model.client.dto;
 
 import io.github.kwisatzx.springmvccompany.model.client.Client;
-import io.github.kwisatzx.springmvccompany.services.ClientService;
+import io.github.kwisatzx.springmvccompany.services.interfaces.ClientService;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;

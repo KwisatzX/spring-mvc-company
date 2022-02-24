@@ -1,9 +1,10 @@
-package io.github.kwisatzx.springmvccompany.services;
+package io.github.kwisatzx.springmvccompany.services.impl;
 
 import io.github.kwisatzx.springmvccompany.model.branch.Branch;
 import io.github.kwisatzx.springmvccompany.model.employee.Employee;
 import io.github.kwisatzx.springmvccompany.repositories.BranchRepository;
 import io.github.kwisatzx.springmvccompany.repositories.EmployeeRepository;
+import io.github.kwisatzx.springmvccompany.services.interfaces.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 

@@ -1,7 +1,7 @@
 package io.github.kwisatzx.springmvccompany.model.supplier.dto;
 
 import io.github.kwisatzx.springmvccompany.model.supplier.BranchSupplier;
-import io.github.kwisatzx.springmvccompany.services.SupplierService;
+import io.github.kwisatzx.springmvccompany.services.interfaces.SupplierService;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;

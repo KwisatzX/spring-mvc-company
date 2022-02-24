@@ -3,7 +3,7 @@ package io.github.kwisatzx.springmvccompany.model.branch.validation;
 import io.github.kwisatzx.springmvccompany.model.branch.dto.BranchInputDto;
 import io.github.kwisatzx.springmvccompany.model.client.Client;
 import io.github.kwisatzx.springmvccompany.model.employee.Employee;
-import io.github.kwisatzx.springmvccompany.services.BranchService;
+import io.github.kwisatzx.springmvccompany.services.interfaces.BranchService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;

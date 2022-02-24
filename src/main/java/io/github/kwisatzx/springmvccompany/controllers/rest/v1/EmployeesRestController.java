@@ -8,7 +8,7 @@ import io.github.kwisatzx.springmvccompany.model.employee.dto.EmployeeGetDto;
 import io.github.kwisatzx.springmvccompany.model.employee.dto.EmployeeInputDto;
 import io.github.kwisatzx.springmvccompany.model.employee.dto.EmployeeModelMapper;
 import io.github.kwisatzx.springmvccompany.model.employee.validation.EmployeeInputDtoValidator;
-import io.github.kwisatzx.springmvccompany.services.EmployeeService;
+import io.github.kwisatzx.springmvccompany.services.interfaces.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;

@@ -8,7 +8,7 @@ import io.github.kwisatzx.springmvccompany.model.client.dto.ClientGetDto;
 import io.github.kwisatzx.springmvccompany.model.client.dto.ClientInputDto;
 import io.github.kwisatzx.springmvccompany.model.client.dto.ClientModelMapper;
 import io.github.kwisatzx.springmvccompany.model.client.validation.ClientInputDtoValidator;
-import io.github.kwisatzx.springmvccompany.services.ClientService;
+import io.github.kwisatzx.springmvccompany.services.interfaces.ClientService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
