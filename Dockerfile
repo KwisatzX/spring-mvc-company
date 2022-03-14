@@ -10,5 +10,6 @@ USER spring:spring
 COPY --from=builder app/dependencies/ ./
 COPY --from=builder app/snapshot-dependencies/ ./
 COPY --from=builder app/application/ ./
-EXPOSE 8080:8080
-ENTRYPOINT ["java","-cp","BOOT-INF/classes:BOOT-INF/lib/*","io.github.kwisatzx.springmvccompany.SpringMvcCompanyApplication"]
+COPY wait-for-it.sh ./
+EXPOSE 8080
+CMD ["java","-cp","BOOT-INF/classes:BOOT-INF/lib/*","io.github.kwisatzx.springmvccompany.SpringMvcCompanyApplication"]

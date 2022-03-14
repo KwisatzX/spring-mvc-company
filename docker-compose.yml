@@ -1,0 +1,22 @@
+version: "3"
+services:
+  backend:
+    build: .
+    image: kwisatzx/paper-company
+    container_name: backend
+    environment:
+      SPRING_PROFILES_ACTIVE: mysql
+    ports:
+      - "80:8080"
+    depends_on:
+      - db
+    command: [ "./wait-for-it.sh", "db:3306", "--", "java","-cp","BOOT-INF/classes:BOOT-INF/lib/*","io.github.kwisatzx.springmvccompany.SpringMvcCompanyApplication" ]
+
+  db:
+    image: mysql
+    container_name: backend_db
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+      MYSQL_DATABASE: company
+      MYSQL_USER: spring
+      MYSQL_PASSWORD: spring
